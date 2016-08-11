@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - improve_test@localhost" uuid="73dbbf9e-55b2-433b-9e91-4a30ecc97417">
+    <database-info product="MySQL" version="5.7.13-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+      <schema id="1" name="improve_test">
+        <visible>1</visible>
+      </schema>
+      <schema id="2" name="information_schema"/>
+      <schema id="3" name="mynewdatabase"/>
+      <schema id="4" name="mysql"/>
+      <schema id="5" name="performance_schema"/>
+      <schema id="6" name="playtox_test"/>
+      <schema id="7" name="play_test"/>
+      <schema id="8" name="sakila"/>
+      <schema id="9" name="shop_test"/>
+      <schema id="10" name="sys"/>
+      <schema id="11" name="world"/>
+      <table id="12" parent="1" name="category"/>
+      <table id="13" parent="1" name="hibernate_sequence"/>
+      <table id="14" parent="1" name="product"/>
+      <column id="15" parent="12" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="16" parent="12" name="name">
+        <data-type>varchar(255)|0</data-type>
+      </column>
+      <key id="17" parent="12" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <column id="18" parent="13" name="next_val">
+        <data-type>bigint(20)|0</data-type>
+      </column>
+      <column id="19" parent="14" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)|0</data-type>
+      </column>
+      <column id="20" parent="14" name="name">
+        <data-type>varchar(255)|0</data-type>
+      </column>
+      <column id="21" parent="14" name="price">
+        <data-type>decimal(16,2)|0</data-type>
+      </column>
+      <column id="22" parent="14" name="category_id">
+        <data-type>int(11)|0</data-type>
+      </column>
+      <index id="23" parent="14" name="FKexqqeaksnmmku5py194ywp140">
+        <columns>category_id</columns>
+        <desc-columns></desc-columns>
+      </index>
+      <key id="24" parent="14" name="PRIMARY">
+        <columns>id</columns>
+        <primary>1</primary>
+      </key>
+      <foreign-key id="25" parent="14" name="FKexqqeaksnmmku5py194ywp140">
+        <columns>category_id</columns>
+        <ref-key>~.category.PRIMARY</ref-key>
+        <cascade-update-rule>restrict</cascade-update-rule>
+        <cascade-delete-rule>restrict</cascade-delete-rule>
+      </foreign-key>
+    </database-model>
+  </data-source>
+</component>

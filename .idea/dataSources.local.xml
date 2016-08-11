@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - improve_test@localhost" uuid="73dbbf9e-55b2-433b-9e91-4a30ecc97417">
+      <secret-storage>master_key</secret-storage>
+      <user-name>improve</user-name>
+      <introspection-scope>improve_test:</introspection-scope>
+      <resolve-scope>improve_test:</resolve-scope>
+    </data-source>
+  </component>
+</project>
