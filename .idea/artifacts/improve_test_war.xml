@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="improve-test:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="improve-test-1.0.war">
+      <element id="artifact" artifact-name="improve-test:war exploded" />
+    </root>
+  </artifact>
+</component>

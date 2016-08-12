@@ -1,0 +1,30 @@
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+    padding: 3px 50px 3px 3px;
+}
+
+th {
+    background: #b0e0e6;
+}
+
+div {
+    margin-right: 5px;
+}
+
+.left-float {
+    float: left;
+}
+
+.margin-up {
+    margin-top: 20px;
+}
+
+#alert {
+    margin-left: 50px;
+    color: tomato;
+    font-size: 200%;
+}
