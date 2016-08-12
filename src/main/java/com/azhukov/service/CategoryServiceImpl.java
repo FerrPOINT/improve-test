@@ -1,4 +1,4 @@
-package com.azhukov.manager;
+package com.azhukov.service;
 
 import com.azhukov.dao.CategoryDAO;
 import com.azhukov.entities.Category;

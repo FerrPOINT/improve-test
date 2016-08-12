@@ -18,7 +18,7 @@ public interface ProductDAO {
     
     void remove(Product product);
     
-    List<Product> getByCriteria(Category category, String name,
+    List<Product> getByCriteria(String categoryName, String name,
                                 double priceFrom, double priceTo);
     
     List<Product> getAll();

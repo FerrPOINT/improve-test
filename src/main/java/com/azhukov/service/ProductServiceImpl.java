@@ -1,4 +1,4 @@
-package com.azhukov.manager;
+package com.azhukov.service;
 
 import com.azhukov.dao.ProductDAO;
 import com.azhukov.entities.Category;
@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
@@ -40,8 +37,8 @@ public class ProductServiceImpl implements ProductService {
     }
     
     @Override
-    public List<Product> getByCriteria(Category category, String name, double priceFrom, double priceTo) {
-        return productDAO.getByCriteria(category, name, priceFrom, priceTo);
+    public List<Product> getByCriteria(String categoryName, String name, double priceFrom, double priceTo) {
+        return productDAO.getByCriteria(categoryName, name, priceFrom, priceTo);
     }
     
     @Override

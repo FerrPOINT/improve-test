@@ -1,4 +1,4 @@
-package com.azhukov.manager;
+package com.azhukov.service;
 
 import com.azhukov.entities.Category;
 import com.azhukov.entities.Product;
@@ -17,7 +17,7 @@ public interface ProductService {
     
     void remove(Product product);
     
-    List<Product> getByCriteria(Category category, String name,
+    List<Product> getByCriteria(String categoryName, String name,
                                 double priceFrom, double priceTo);
     
     List<Product> getAll();

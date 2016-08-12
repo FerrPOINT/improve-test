@@ -34,7 +34,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
     
     @Override
-    public List<Product> getByCriteria(Category category, String name, double priceFrom, double priceTo) {
+    public List<Product> getByCriteria(String categoryName, String name, double priceFrom, double priceTo) {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Product> productCriteria = cb.createQuery(Product.class);
         Root<Product> productRoot = productCriteria.from(Product.class);
@@ -43,10 +43,10 @@ public class ProductDAOImpl implements ProductDAO {
         Expression<Double> price = productRoot.get("price");
         productCriteria.where(
             cb.like(cb.lower(productRoot.get("category").get("name").as(String.class)),
-                    category.getName().toLowerCase()+"%"),
+                    categoryName.toLowerCase()+"%"),
             cb.like(cb.lower(productRoot.get("name").as(String.class)),name.toLowerCase()+"%"),
-            cb.lt(price, priceTo),
-            cb.gt(price, priceFrom));
+            cb.or(cb.lt(price, priceTo), cb.equal(price, priceTo)),
+            cb.or(cb.gt(price, priceFrom), cb.equal(price, priceFrom)));
         
         return entityManager.createQuery(productCriteria).getResultList();
     }
