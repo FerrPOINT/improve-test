@@ -1,5 +1,6 @@
-﻿CREATE USER IF NOT EXISTS 'improve' IDENTIFIED BY 'improve';
-GRANT ALL PRIVILEGES ON * . * TO 'improve';
+﻿DROP USER IF EXISTS 'improve';
+CREATE USER 'improve' IDENTIFIED BY 'improve';
+GRANT ALL PRIVILEGES ON *.* TO 'improve';
 FLUSH PRIVILEGES;
 
 DROP DATABASE IF EXISTS improve_test;
@@ -7,17 +8,18 @@ CREATE DATABASE improve_test;
 USE improve_test;
 
 CREATE TABLE category (
-  id   INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(255) DEFAULT NULL,
+  id   INT AUTO_INCREMENT,
+  name VARCHAR(255),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE product (
-  id          INT NOT NULL   AUTO_INCREMENT,
-  name        VARCHAR(255)   DEFAULT NULL,
-  price       DECIMAL(16, 2) DEFAULT NULL,
-  category_id INT            DEFAULT NULL,
-  PRIMARY KEY (id)
+  id          INT AUTO_INCREMENT,
+  name        VARCHAR(255),
+  price       DECIMAL(16, 2),
+  category_id INT,
+  PRIMARY KEY (id),
+  FOREIGN KEY (category_id) REFERENCES category (id)
 );
 
 INSERT INTO category (name)

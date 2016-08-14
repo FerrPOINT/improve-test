@@ -18,7 +18,7 @@ public interface ProductService {
     void remove(Product product);
     
     List<Product> getByCriteria(String categoryName, String name,
-                                double priceFrom, double priceTo);
+                                String priceFrom, String priceTo);
     
     List<Product> getAll();
     

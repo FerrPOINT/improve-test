@@ -3,6 +3,7 @@ package com.azhukov.service;
 import com.azhukov.dao.ProductDAO;
 import com.azhukov.entities.Category;
 import com.azhukov.entities.Product;
+import org.apache.commons.lang.math.NumberUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,8 +38,24 @@ public class ProductServiceImpl implements ProductService {
     }
     
     @Override
-    public List<Product> getByCriteria(String categoryName, String name, double priceFrom, double priceTo) {
-        return productDAO.getByCriteria(categoryName, name, priceFrom, priceTo);
+    public List<Product> getByCriteria(String categoryName, String name,
+                                       String priceFrom, String priceTo) {
+    
+        double priceFromValue;
+        if(priceFrom.isEmpty()) {
+            priceFromValue = 0;
+        } else {
+            priceFromValue = Double.parseDouble(priceFrom);
+        }
+    
+        double priceToValue;
+        if(priceTo.isEmpty()) {
+            priceToValue = Double.MAX_VALUE;
+        } else {
+            priceToValue = Double.parseDouble(priceTo);
+        }
+        
+        return productDAO.getByCriteria(categoryName, name, priceFromValue, priceToValue);
     }
     
     @Override
