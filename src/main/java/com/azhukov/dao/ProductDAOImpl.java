@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.*;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -40,13 +42,31 @@ public class ProductDAOImpl implements ProductDAO {
         Root<Product> productRoot = productCriteria.from(Product.class);
         productCriteria.select(productRoot);
         
+        List<Predicate> predicates = new ArrayList();
         Expression<Double> price = productRoot.get("price");
-        productCriteria.where(
-            cb.like(cb.lower(productRoot.get("category").get("name").as(String.class)),
-                    categoryName.toLowerCase()+"%"),
-            cb.like(cb.lower(productRoot.get("name").as(String.class)),name.toLowerCase()+"%"),
-            cb.or(cb.lt(price, priceTo), cb.equal(price, priceTo)),
-            cb.or(cb.gt(price, priceFrom), cb.equal(price, priceFrom)));
+        
+        if(!categoryName.isEmpty()){
+            predicates.add(cb.like(cb.lower(productRoot.get("category").get("name").as(String.class)),
+                    categoryName.toLowerCase()+"%"));
+        }
+        if(!name.isEmpty()){
+            predicates.add(cb.like(cb.lower(productRoot.get("name").as(String.class)),
+                    name.toLowerCase()+"%"));
+        }
+        if(priceFrom < priceTo) {
+            if(priceFrom > 0){
+                predicates.add(cb.or(cb.gt(price, priceFrom), cb.equal(price, priceFrom)));
+            }
+            if(priceTo != Double.MAX_VALUE){
+                predicates.add(cb.or(cb.lt(price, priceTo), cb.equal(price, priceTo)));
+            }
+        }else if(priceFrom == priceTo){
+            predicates.add(cb.equal(price, priceFrom));
+        } else {
+            return Collections.EMPTY_LIST;
+        }
+        
+        productCriteria.where(predicates.toArray(new Predicate[predicates.size()]));
         
         return entityManager.createQuery(productCriteria).getResultList();
     }
